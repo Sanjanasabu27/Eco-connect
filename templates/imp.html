@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eco Connect - Impact Reporting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6fff6;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #4caf50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Eco Connect - Impact Reporting</h1>
+
+<form id="eventForm">
+  <label>Event Name:</label>
+  <input type="text" id="eventName" required>
+
+  <label>Event Description:</label>
+  <textarea id="eventDescription" required></textarea>
+
+  <label>Number of Participants:</label>
+  <input type="number" id="participants" min="1" required>
+
+  <label>Average CO₂ Saved Per Participant (kg):</label>
+  <input type="number" id="co2PerPerson" min="0" required>
+
+  <button type="submit">Log Event</button>
+</form>
+
+<h2>Event Impact Log</h2>
+<table id="eventTable">
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Description</th>
+      <th>Participants</th>
+      <th>CO₂ Saved (kg)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Rows will be added here -->
+  </tbody>
+</table>
+
+<h3 id="totalSavings">Total CO₂ Saved: 0 kg</h3>
+
+<script>
+  let totalCO2 = 0;
+
+  document.getElementById("eventForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get form values
+    const name = document.getElementById("eventName").value;
+    const description = document.getElementById("eventDescription").value;
+    const participants = parseInt(document.getElementById("participants").value);
+    const co2PerPerson = parseFloat(document.getElementById("co2PerPerson").value);
+
+    // Calculate CO2 savings
+    const co2Saved = participants * co2PerPerson;
+
+    // Add to total
+    totalCO2 += co2Saved;
+
+    // Add row to table
+    const table = document.getElementById("eventTable").querySelector("tbody");
+    const row = table.insertRow();
+    row.innerHTML = `
+      <td>${name}</td>
+      <td>${description}</td>
+      <td>${participants}</td>
+      <td>${co2Saved.toFixed(2)}</td>
+    `;
+
+    // Update total savings display
+    document.getElementById("totalSavings").textContent = `Total CO₂ Saved: ${totalCO2.toFixed(2)} kg`;
+
+    // Clear form
+    document.getElementById("eventForm").reset();
+  });
+</script>
+
+</body>
+</html>

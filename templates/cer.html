@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Generation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0fff0;
+      padding: 20px;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    form {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #2e7d32;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #1b5e20;
+    }
+    .certificate {
+      display: none;
+      margin-top: 20px;
+      width: 800px;
+      height: 600px;
+      padding: 40px;
+      background: white;
+      border: 10px solid #2e7d32;
+      text-align: center;
+      position: relative;
+    }
+    .certificate h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .certificate h2 {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    .certificate p {
+      font-size: 18px;
+    }
+    #qrcode {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎓 Certificate Generation</h2>
+  <p>Fill out the details below to generate a unique participation certificate.</p>
+
+  <form id="certForm">
+    <label for="name">Participant Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="event">Event Name:</label>
+    <input type="text" id="event" name="event" required>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <button type="submit">Generate Certificate</button>
+  </form>
+
+  <div class="certificate" id="certificate">
+    <h1>Certificate of Participation</h1>
+    <p>This is proudly presented to</p>
+    <h2 id="certName"></h2>
+    <p>for their active participation in</p>
+    <h2 id="certEvent"></h2>
+    <p>Date: <span id="certDate"></span></p>
+    <div id="qrcode"></div>
+  </div>
+
+  <!-- QR Code Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    document.getElementById('certForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const event = document.getElementById('event').value;
+      const date = document.getElementById('date').value;
+
+      document.getElementById('certName').textContent = name;
+      document.getElementById('certEvent').textContent = event;
+      document.getElementById('certDate').textContent = date;
+
+      // Show certificate
+      document.getElementById('certificate').style.display = 'block';
+
+      // Generate QR code with unique data
+      document.getElementById('qrcode').innerHTML = "";
+      new QRCode(document.getElementById("qrcode"), {
+        text: `${name} - ${event} - ${date}`,
+        width: 80,
+        height: 80
+      });
+    });
+  </script>
+
+</body>
+</html>

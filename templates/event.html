@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eco Connect - Event Creations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5fff5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
+
+    .event-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: left;
+      border-left: 6px solid #4caf50;
+    }
+
+    .event-card h3 {
+      margin-top: 0;
+      color: #388e3c;
+    }
+
+    .event-card p {
+      margin: 5px 0;
+    }
+
+    .date {
+      font-weight: bold;
+      color: #1b5e20;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Eco Connect - Upcoming Events</h1>
+
+  <div id="eventContainer" class="event-container">
+    <!-- JavaScript will create event cards here -->
+  </div>
+
+  <script>
+    // Example event data (can be fetched from an API later)
+    const events = [
+      {
+        title: "Beach Clean-up Drive",
+        date: "2025-08-20",
+        location: "Marina Beach, Chennai",
+        description: "Join us for a beach clean-up drive to reduce plastic waste and protect marine life."
+      },
+      {
+        title: "Tree Plantation Campaign",
+        date: "2025-09-05",
+        location: "Eco Park, Mumbai",
+        description: "Plant trees and contribute towards making the city greener."
+      },
+      {
+        title: "Recycling Awareness Workshop",
+        date: "2025-09-15",
+        location: "City Hall, Pune",
+        description: "Learn how to segregate waste and recycle effectively at home."
+      }
+    ];
+
+    // Function to create event cards dynamically
+    function loadEvents() {
+      const container = document.getElementById("eventContainer");
+      container.innerHTML = "";
+
+      events.forEach(event => {
+        const card = document.createElement("div");
+        card.classList.add("event-card");
+        card.innerHTML = `
+          <h3>${event.title}</h3>
+          <p class="date">📅 ${event.date}</p>
+          <p>📍 ${event.location}</p>
+          <p>${event.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Load events when page opens
+    loadEvents();
+  </script>
+
+</body>
+</html>

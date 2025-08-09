@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eco Connect - Leaderboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: green;
+    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 60%;
+      background: white;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #4CAF50;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏆 Eco-Score Leaderboard</h1>
+  <table id="leaderboard">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Eco-Score</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Example eco-score data
+    const participants = [
+      { name: "Alice", score: 85 },
+      { name: "Bob", score: 92 },
+      { name: "Charlie", score: 78 },
+      { name: "Diana", score: 95 },
+      { name: "Ethan", score: 88 }
+    ];
+
+    // Sort by highest score
+    participants.sort((a, b) => b.score - a.score);
+
+    const tbody = document.querySelector("#leaderboard tbody");
+
+    participants.forEach((p, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${p.name}</td>
+        <td>${p.score}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+
+</body>
+</html>

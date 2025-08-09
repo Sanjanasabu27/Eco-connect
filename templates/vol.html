@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volunteer Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6fff6;
+      padding: 20px;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    form {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #2e7d32;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #1b5e20;
+    }
+    .qr-code {
+      margin-top: 20px;
+      text-align: center;
+      padding: 15px;
+      border: 1px dashed #aaa;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>👥 Volunteer Management</h2>
+  <p>Assign and track volunteers for sustainability events. Volunteers can check in using the event QR code.</p>
+
+  <form id="volunteerForm">
+    <label for="volunteerName">Volunteer Name:</label>
+    <input type="text" id="volunteerName" name="volunteerName" required>
+
+    <label for="volunteerEmail">Email Address:</label>
+    <input type="email" id="volunteerEmail" name="volunteerEmail" required>
+
+    <label for="event">Select Event:</label>
+    <select id="event" name="event" required>
+      <option value="">--Choose Event--</option>
+      <option value="treePlanting">Tree Planting Drive</option>
+      <option value="energyCampaign">Energy Saving Campaign</option>
+      <option value="recycling">Recycling Awareness</option>
+    </select>
+
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+      <option value="">--Select Role--</option>
+      <option value="leader">Team Leader</option>
+      <option value="member">Volunteer Member</option>
+      <option value="logistics">Logistics Support</option>
+    </select>
+
+    <button type="submit">Add Volunteer</button>
+  </form>
+
+  <div class="qr-code">
+    <p><strong>Event QR Code (Check-in)</strong></p>
+    <p>📷 QR Code will be generated here.</p>
+  </div>
+
+  <script>
+    document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Volunteer added successfully!');
+      // Later: send data to backend & generate QR code
+    });
+  </script>
+
+</body>
+</html>
