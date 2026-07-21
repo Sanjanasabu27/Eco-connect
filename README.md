@@ -29,5 +29,8 @@ https://github.com/Sanjanasabu27/Eco-connect
 - Sana S - Backend
 - Nadhiya A-Documentation and text
 
-## Screenshot
-![Screenshot](./assets/eco.png)
+NOW 
+<img width="1881" height="916" alt="image" src="https://github.com/user-attachments/assets/a876ab73-b148-47c6-9b55-a064cae37680" />
+<img width="1875" height="907" alt="image" src="https://github.com/user-attachments/assets/a285fd4d-d449-48a5-b972-b4de79233602" />
+<img width="1885" height="910" alt="image" src="https://github.com/user-attachments/assets/ff54cca0-3189-4003-8aa6-69d5675e779a" />
+
